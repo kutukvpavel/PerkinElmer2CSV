@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PerkinElmerSP2CSV": {
+      "commandName": "Project",
+      "commandLineArgs": "\"E:\\ZnO.sp\""
+    }
+  }
+}
