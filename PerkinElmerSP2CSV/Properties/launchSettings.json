@@ -2,7 +2,7 @@
   "profiles": {
     "PerkinElmerSP2CSV": {
       "commandName": "Project",
-      "commandLineArgs": "\"E:\\ZnO.sp\""
+      "commandLineArgs": "\"C:\\Users\\Павел\\Desktop\\zno all 2022-02-21\" -r"
     }
   }
 }

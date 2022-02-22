@@ -15,12 +15,14 @@ namespace PerkinElmerSP2CSV
             SpFileProvider.Instance
         }).ToDictionary(x => x.Extension, x => x);
 
-        static readonly CsvConfiguration CsvConf = new CsvConfiguration(System.Globalization.CultureInfo.CurrentCulture);
+        static readonly CsvConfiguration CsvConf = new CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture);
+        static bool RecursiveOption = false;
 
         static void Main(string[] args)
         {
             Console.WriteLine("Perkin Elmer CSV toolkit started!");
             Console.CancelKeyPress += Console_CancelKeyPress;
+            RecursiveOption = args.Contains("-r");
             List<string> files = new List<string>();
             if (args.Length > 0)
             {
@@ -60,7 +62,8 @@ namespace PerkinElmerSP2CSV
             }
             else if (Directory.Exists(path))
             {
-                return Directory.GetFiles(path);
+                return RecursiveOption ? Directory.GetFiles(path, "*.*", SearchOption.AllDirectories)
+                    : Directory.GetFiles(path);
             }
             else
             {
