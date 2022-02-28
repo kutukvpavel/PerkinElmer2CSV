@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CsvExportFixer": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\Павел\\Desktop\\zno all 2022-02-21\" -r"
+    }
+  }
+}

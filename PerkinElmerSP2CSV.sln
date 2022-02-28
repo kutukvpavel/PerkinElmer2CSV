@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerkinElmerSP2CSV", "PerkinElmerSP2CSV\PerkinElmerSP2CSV.csproj", "{996106C6-F589-4EDD-A232-9CE816F65AD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerkinElmerSP2CSV", "PerkinElmerSP2CSV\PerkinElmerSP2CSV.csproj", "{996106C6-F589-4EDD-A232-9CE816F65AD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvExportFixer", "CsvExportFixer\CsvExportFixer.csproj", "{4818F6E8-BC66-42D7-AE93-986FB35C4088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrDriftsHelper", "TrDriftsHelper\TrDriftsHelper.csproj", "{F6141D02-64F9-4762-AD36-26E42A0F084E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{996106C6-F589-4EDD-A232-9CE816F65AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{996106C6-F589-4EDD-A232-9CE816F65AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{996106C6-F589-4EDD-A232-9CE816F65AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4818F6E8-BC66-42D7-AE93-986FB35C4088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4818F6E8-BC66-42D7-AE93-986FB35C4088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4818F6E8-BC66-42D7-AE93-986FB35C4088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4818F6E8-BC66-42D7-AE93-986FB35C4088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6141D02-64F9-4762-AD36-26E42A0F084E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6141D02-64F9-4762-AD36-26E42A0F084E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6141D02-64F9-4762-AD36-26E42A0F084E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6141D02-64F9-4762-AD36-26E42A0F084E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
