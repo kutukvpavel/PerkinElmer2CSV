@@ -13,7 +13,7 @@ The app decides what file provider to use based on file extension, so make sure 
 The app checks the magic number of the file ("PEPE" in HEX) prior to processing.
 The app never writes to input files.
 
-The only required command line parameter is the target path. Path can be a directory or a file. Multiple targets are supported.
+The only required command line parameter is the target path. Path can be a directory or a file. Multiple targets are supported (passed as multiple CLI parameters).
 
 Options:
  - recursive folder processing (include subfolders): -r
