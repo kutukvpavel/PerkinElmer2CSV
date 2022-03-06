@@ -20,3 +20,10 @@ Options:
 
 # Output
 Invariat-culture CSVs with a header (column units). Output file name is simply the input file name with the original extension and ".csv" appended to it.
+
+# Other projects included in the repo
+ExportFixer = fix corrupt CSV files exported using Perkin Elmer software.
+16-bit legacy applications like TimeBase for some reason try to respect system's culture when it comes to number formats, but not CSV delimeters.
+On a culture that uses a comma as the decimal separator, CSV delimeters and decimal separators are the same, resulting in an unreadable CSV.
+This app uses some non-sophisticated heuristics based on FTIR spectrometer output files that were available to me. It might not work for you.
+Anyway, this is an emergency solution, in case you've lost the original SP file(s). If not, you should use SP2CSV in the first place.
