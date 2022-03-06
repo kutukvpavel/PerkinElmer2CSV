@@ -1,5 +1,6 @@
 # PerkinElmer2CSV
-A simple command line tool for batch export of Perkin Elmer spectra data from \*.SP files into CSV files. Based on the code from Perkin Elmer plugin for Matlab.
+A simple command line tool for batch export of Perkin Elmer spectra data from \*.SP files into CSV files that was created out of pure frustration coming from "TimeBase" Perkin Elmer software export capabilities.
+Based on the code from Perkin Elmer plugin for Matlab.
 
 Currently, only units are saved as a header. However, all the other known data blocks are still being read, and one can include their data into CSVs with a couple of lines of code.
 Tested on Perkin Elmer Frontier FTIR spectrometer data files.
