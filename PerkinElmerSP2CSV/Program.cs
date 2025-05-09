@@ -18,12 +18,15 @@ namespace PerkinElmerSP2CSV
 
         static readonly CsvConfiguration CsvConf = new CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture);
         static bool RecursiveOption = false;
+        static bool OverwriteOption = false;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Perkin Elmer CSV toolkit started!");
+            Console.WriteLine("Perkin Elmer CSV toolkit v2.1 started!");
             Console.CancelKeyPress += Console_CancelKeyPress;
             RecursiveOption = args.Contains("-r");
+            OverwriteOption = args.Contains("-o");
+            Console.WriteLine($"Recursive folder processing: {RecursiveOption}, Overwrite existing CSV: {OverwriteOption}");
             List<string> files = new List<string>();
             if (args.Length > 0)
             {
@@ -36,7 +39,12 @@ namespace PerkinElmerSP2CSV
             {
                 files.AddRange(Directory.GetFiles(Environment.CurrentDirectory));
             }
-            files = files.Where(x => SupportedProviders.Keys.Contains(Path.GetExtension(x).ToLower())).ToList();
+            var query = files.Where(x => SupportedProviders.Keys.Contains(Path.GetExtension(x).ToLower()));
+            if (!OverwriteOption)
+            {
+                query = query.Where(x => !File.Exists(GetOutputFilePath(x)));
+            }
+            files = query.ToList();
             Console.WriteLine($"Info: total files to process = {files.Count}.");
             Parallel.ForEach(files, ProcessFile);
             Console.WriteLine("Finished.");
@@ -46,7 +54,7 @@ namespace PerkinElmerSP2CSV
         {
             try
             {
-                using TextWriter tw = new StreamWriter(path + ".csv");
+                using TextWriter tw = new StreamWriter(GetOutputFilePath(path));
                 using CsvWriter w = new CsvWriter(tw, CsvConf);
                 var d = SupportedProviders[Path.GetExtension(path)].GetData(path);
                 d?.WriteCsv(w);
@@ -73,6 +81,11 @@ namespace PerkinElmerSP2CSV
             {
                 return new string[] { };
             }
+        }
+
+        static string GetOutputFilePath(string inputPath)
+        {
+            return inputPath + ".csv";
         }
 
         private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
