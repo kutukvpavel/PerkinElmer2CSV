@@ -16,6 +16,16 @@ namespace PerkinElmerSP2CSV
         const string FileSignature = "PEPE";
         const int DescriptionRecordLength = 40;
 
+        public static BlockFile Load(string path)
+        {
+            BlockFile file;
+            using (FileStream s = new FileStream(path, FileMode.Open))
+            {
+                file = new BlockFile(s);
+            }
+            return file;
+        }
+
         public BlockFile(FileStream file)
         {
             //Parse header

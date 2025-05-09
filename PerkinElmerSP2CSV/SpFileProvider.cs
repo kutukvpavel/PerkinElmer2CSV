@@ -12,7 +12,7 @@ namespace PerkinElmerSP2CSV
     /// </summary>
     public class SpFileProvider : IFileProvider
     {
-        private static SpFileProvider _instance = new SpFileProvider();
+        private static readonly SpFileProvider _instance = new SpFileProvider();
         private SpFileProvider() { }
         public static SpFileProvider Instance { get => _instance; }
         public string Extension { get; } = ".sp";
@@ -162,11 +162,11 @@ namespace PerkinElmerSP2CSV
             }
         }
 
-        public IData GetData(BlockFile file)
+        public IData GetData(string path)
         {
             if (!BitConverter.IsLittleEndian)
                 throw new NotSupportedException("BigEndian architectures are not supported (yet).");
-            Block main = file.Contents.FirstOrDefault(x => x.Id == (short)MainBlock);
+            Block main = BlockFile.Load(path).Contents.FirstOrDefault(x => x.Id == (short)MainBlock);
             if (main == null)
                 throw new NotSupportedException($"This SP file doesn't contain a {Enum.GetName(typeof(Blocks), MainBlock)} block.");
             var spec = new Spectrum2d();

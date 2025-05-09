@@ -12,7 +12,8 @@ namespace PerkinElmerSP2CSV
     {
         static readonly Dictionary<string, IFileProvider> SupportedProviders = (new IFileProvider[]
         {
-            SpFileProvider.Instance
+            SpFileProvider.Instance,
+            PrfFileProvider.Instance
         }).ToDictionary(x => x.Extension, x => x);
 
         static readonly CsvConfiguration CsvConf = new CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture);
@@ -43,15 +44,18 @@ namespace PerkinElmerSP2CSV
 
         static void ProcessFile(string path)
         {
-            BlockFile file = null;
-            using (FileStream s = new FileStream(path, FileMode.Open))
+            try
             {
-                file = new BlockFile(s);
+                using TextWriter tw = new StreamWriter(path + ".csv");
+                using CsvWriter w = new CsvWriter(tw, CsvConf);
+                var d = SupportedProviders[Path.GetExtension(path)].GetData(path);
+                d?.WriteCsv(w);
+                Console.WriteLine(d == null ? $"Warning: no data found in '{path}'." : $"Info: processed file '{path}'.");
             }
-            using TextWriter tw = new StreamWriter(path + ".csv");
-            using CsvWriter w = new CsvWriter(tw, CsvConf);
-            SupportedProviders[Path.GetExtension(path)].GetData(file).WriteCsv(w);
-            Console.WriteLine($"Info: processed file '{path}'.");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: for file '{path}', {Environment.NewLine}\t{ex}");
+            }
         }
 
         static string[] GetFileOrDir(string path)
