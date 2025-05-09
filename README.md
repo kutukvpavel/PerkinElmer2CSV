@@ -9,7 +9,7 @@ File processing is multithreaded, however the processing core is not exactly mem
 
 # Usage
 The app decides what file provider to use based on file extension, so make sure it's correct. 
-*For now, only SP files are supported. Other PE-block files can be de-facto supported, however I have no means to test it.*
+*For now, only SP and PRF files are supported. Other PE-block files can be de-facto supported, however I have no means to test it.*
 The app checks the magic number of the file ("PEPE" in HEX) prior to processing.
 The app never writes to input files.
 
